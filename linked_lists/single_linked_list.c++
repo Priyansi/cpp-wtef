@@ -14,7 +14,7 @@ template <typename DataType>
 class Node {
    public:
     DataType data;
-    Node<DataType>* next;
+    Node<DataType> *next;
     Node() {
         next = nullptr;
     }
@@ -22,7 +22,7 @@ class Node {
 
 template <typename DataType>
 class SingleLinkedList {
-    Node<DataType>* head;
+    Node<DataType> *head;
     int length;
 
    public:
@@ -40,7 +40,7 @@ class SingleLinkedList {
     }
 
     void insertNodeAtEnd(DataType val) {
-        Node<DataType>* new_node = new (nothrow) Node<DataType>();  // to avoid bad alloc exception to be thrown
+        Node<DataType> *new_node = new (nothrow) Node<DataType>();  // to avoid bad alloc exception to be thrown
         if (!new_node) {
             cout << "Memory allocation failed\n";
             return;
@@ -49,7 +49,7 @@ class SingleLinkedList {
         if (head == nullptr) {
             head = new_node;
         } else {
-            Node<DataType>* curr_node;
+            Node<DataType> *curr_node;
             for (curr_node = head; curr_node->next != nullptr; curr_node = curr_node->next)
                 ;
             curr_node->next = new_node;
@@ -58,7 +58,7 @@ class SingleLinkedList {
     }
 
     void insertNodeAtIndex(DataType val, int ind_to_insert) {
-        Node<DataType>* new_node = new (nothrow) Node<DataType>();  // to avoid bad alloc exception to be thrown
+        Node<DataType> *new_node = new (nothrow) Node<DataType>();  // to avoid bad alloc exception to be thrown
         if (!new_node) {
             cout << "Memory allocation failed\n";
             return;
@@ -70,8 +70,8 @@ class SingleLinkedList {
             new_node->next = head;
             head = new_node;
         } else {
-            Node<DataType>* curr_node = head;
-            Node<DataType>* prev_node;
+            Node<DataType> *curr_node = head;
+            Node<DataType> *prev_node;
             int curr_ind = 0;
             while (curr_ind < ind_to_insert && curr_node != nullptr) {  // insert at index or insert at last if index not found
                 ++curr_ind;
@@ -88,8 +88,8 @@ class SingleLinkedList {
         if (head == nullptr) {
             cout << "Empty list. No node to delete.\n";
         } else {
-            Node<DataType>* curr_node;
-            Node<DataType>* prev_node;
+            Node<DataType> *curr_node;
+            Node<DataType> *prev_node;
             for (curr_node = head, prev_node; curr_node->next != nullptr; prev_node = curr_node, curr_node = curr_node->next)
                 ;
             if (curr_node == head) {
@@ -106,8 +106,8 @@ class SingleLinkedList {
         if (head == nullptr) {
             cout << "Empty list. No node to delete.\n";
         } else {
-            Node<DataType>* curr_node = head;
-            Node<DataType>* prev_node;
+            Node<DataType> *curr_node = head;
+            Node<DataType> *prev_node;
             int curr_ind = 0;
             while (curr_ind < ind_to_delete && curr_node->next != nullptr) {  // delete at index or delete at last if index not found
                 ++curr_ind;
@@ -123,12 +123,12 @@ class SingleLinkedList {
             decrementLength();
         }
     }
-    auto _reverseNodesRecursive(Node<DataType>* curr) {
+    auto _reverseNodesRecursive(Node<DataType> *curr) {
         if (curr->next == nullptr) {
             head = curr;
             return curr;
         }
-        Node<DataType>* prev = _reverseNodesRecursive(curr->next);
+        Node<DataType> *prev = _reverseNodesRecursive(curr->next);
         prev->next = curr;
         curr->next = nullptr;
         return curr;
@@ -141,9 +141,9 @@ class SingleLinkedList {
     }
 
     void reverseNodesIterative() {
-        Node<DataType>* prev_node = nullptr;
-        Node<DataType>* curr_node = head;
-        Node<DataType>* next_node = nullptr;
+        Node<DataType> *prev_node = nullptr;
+        Node<DataType> *curr_node = head;
+        Node<DataType> *next_node = nullptr;
         while (curr_node != nullptr) {
             next_node = curr_node->next;
             curr_node->next = prev_node;
@@ -155,7 +155,7 @@ class SingleLinkedList {
 
     bool search(int ele_to_search) {
         if (head != nullptr) {
-            for (Node<DataType>* curr_node = head; curr_node != nullptr; curr_node = curr_node->next) {
+            for (Node<DataType> *curr_node = head; curr_node != nullptr; curr_node = curr_node->next) {
                 if (curr_node->data == ele_to_search) {
                     return true;
                 }
@@ -166,7 +166,7 @@ class SingleLinkedList {
 
     void displayNodes() {
         if (head != nullptr) {
-            for (Node<DataType>* curr_node = head; curr_node != nullptr; curr_node = curr_node->next) {
+            for (Node<DataType> *curr_node = head; curr_node != nullptr; curr_node = curr_node->next) {
                 cout << curr_node->data << "->";
             }
         }
@@ -174,7 +174,7 @@ class SingleLinkedList {
     }
 };
 
-int main(int argc, char* argv[]) {
+int main(int argc, char *argv[]) {
     SingleLinkedList<int> sll;
     sll.insertNodeAtEnd(2);
     sll.insertNodeAtEnd(3);

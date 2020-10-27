@@ -35,27 +35,26 @@ class Stack {
     }
 
     DataType* peek() {
-        if (is_empty()) {
+        if (isEmpty()) {
             return nullptr;
         }
         return &data[top];
     }
 
-    bool
-    is_empty() {
+    bool isEmpty() {
         return top == -1;
     }
 
-    void display_iter() {
+    void display() {
         Stack<DataType> temp(max_length);
         DataType curr;
-        while (!is_empty()) {
+        while (!isEmpty()) {
             curr = *peek();
             pop();
             temp.push(curr);
             cout << curr << " ";
         }
-        while (!temp.is_empty()) {
+        while (!temp.isEmpty()) {
             curr = *(temp.peek());
             temp.pop();
             push(curr);
@@ -63,53 +62,37 @@ class Stack {
         cout << "\n";
     }
 
-    void display_recr() {
-        if (is_empty()) {
-            return;
+    DataType sort() {
+        Stack<DataType> temp(max_length);
+        DataType curr, curr_temp;
+        while (!isEmpty()) {
+            curr = *peek();
+            pop();
+            while (!temp.isEmpty() && curr > *(temp.peek())) {
+                curr_temp = *(temp.peek());
+                temp.pop();
+                push(curr_temp);
+            }
+            temp.push(curr);
         }
-        cout << *peek() << " ";
-        pop();
-        display_iter();
-        push(*peek());
+        *this = temp;
     }
 };
 
 int main(int argc, char* argv[]) {
-    Stack<int> s(3);
-    s.push(1);
+    Stack<int> s(10);
     s.push(2);
-    s.push(3);
-    s.display_iter();
-    /* 
-    Output -
-    
+    s.push(97);
+    s.push(4);
+    s.push(42);
+    s.push(12);
+    s.push(60);
+    s.push(23);
+    s.display();
+    s.sort();
+    s.display();
+    /*Output-
+    23 60 12 42 4 97 2 
+    2 4 12 23 42 60 97 
     */
-
-    s.pop();
-    s.display_recr();
-    /* 
-    Output -
-    2 1
-    */
-
-    cout << ((s.peek() == nullptr) ? "" : to_string(*s.peek())) << "\n";
-    /* 
-    Output -
-    2
-    */
-
-    s.pop();
-    s.pop();
-    cout << ((s.peek() == nullptr) ? "" : to_string(*s.peek())) << "\n";
-    /* 
-    Output -
-    
-    */
-
-    cout << (s.is_empty() ? "True" : "False") << "\n";
-    /* 
-    Output -
-    True
-    */
-    return 0;
 }

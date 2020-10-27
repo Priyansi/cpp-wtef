@@ -1,3 +1,5 @@
+#pragma once
+
 #include <algorithm>
 #include <iostream>
 #include <utility>
@@ -29,6 +31,8 @@ class Stack {
             cout << "Memory allocation failed\n";
             return;
         }
+        while (!isEmpty() && peek()->data < val) {
+        }
         new_node->data = val;
         new_node->next = top;
         top = new_node;
@@ -52,7 +56,7 @@ class Stack {
         return top == nullptr;
     }
 
-    void displayIter() {
+    void display() {
         Stack<DataType> temp;
         DataType curr;
         while (!isEmpty()) {
@@ -68,53 +72,4 @@ class Stack {
         }
         cout << "\n";
     }
-    void displayRecr() {
-        if (isEmpty()) {
-            return;
-        }
-        cout << peek()->data << " ";
-        pop();
-        displayRecr();
-        push(peek()->data);
-    }
 };
-
-int main(int argc, char* argv[]) {
-    Stack<int> s;
-    s.push(1);
-    s.push(2);
-    s.push(3);
-    s.displayIter();
-    /* 
-    Output -
-    
-    */
-
-    s.pop();
-    s.displayRecr();
-    /* 
-    Output -
-    2 1
-    */
-
-    cout << ((s.peek() == nullptr) ? "" : to_string(s.peek()->data)) << "\n";
-    /* 
-    Output -
-    2
-    */
-
-    s.pop();
-    s.pop();
-    cout << ((s.peek() == nullptr) ? "" : to_string(s.peek()->data)) << "\n";
-    /* 
-    Output -
-    
-    */
-
-    cout << (s.isEmpty() ? "True" : "False") << "\n";
-    /* 
-    Output -
-    True
-    */
-    return 0;
-}
