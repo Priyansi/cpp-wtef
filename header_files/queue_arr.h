@@ -57,6 +57,9 @@ class Queue {
     }
 
     int length() {
+        if (isEmpty()) {
+            return 0;
+        }
         return (rear - front + max_length) % max_length + 1;
     }
 
