@@ -7,18 +7,18 @@
 using namespace std;
 
 template <typename DataType>
-class Node {
+class NodeStack {
    public:
     DataType data;
-    Node<DataType>* next;
-    Node() {
+    NodeStack<DataType>* next;
+    NodeStack() {
         next = nullptr;
     }
 };
 
 template <typename DataType>
 class Stack {
-    Node<DataType>* top;
+    NodeStack<DataType>* top;
 
    public:
     Stack() {
@@ -26,7 +26,7 @@ class Stack {
     }
 
     void push(DataType val) {
-        Node<DataType>* new_node = new (nothrow) Node<DataType>();  // to avoid bad alloc exception to be thrown
+        NodeStack<DataType>* new_node = new (nothrow) NodeStack<DataType>();  // to avoid bad alloc exception to be thrown
         if (!new_node) {
             cout << "Memory allocation failed\n";
             return;
@@ -46,7 +46,7 @@ class Stack {
         delete del_node;
     }
 
-    Node<DataType>* peek() {
+    NodeStack<DataType>* peek() {
         return top;
     }
 

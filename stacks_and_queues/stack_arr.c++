@@ -35,27 +35,27 @@ class Stack {
     }
 
     DataType* peek() {
-        if (is_empty()) {
+        if (isEmpty()) {
             return nullptr;
         }
         return &data[top];
     }
 
     bool
-    is_empty() {
+    isEmpty() {
         return top == -1;
     }
 
-    void display_iter() {
+    void displayIter() {
         Stack<DataType> temp(max_length);
         DataType curr;
-        while (!is_empty()) {
+        while (!isEmpty()) {
             curr = *peek();
             pop();
             temp.push(curr);
             cout << curr << " ";
         }
-        while (!temp.is_empty()) {
+        while (!temp.isEmpty()) {
             curr = *(temp.peek());
             temp.pop();
             push(curr);
@@ -63,13 +63,13 @@ class Stack {
         cout << "\n";
     }
 
-    void display_recr() {
-        if (is_empty()) {
+    void displayRecr() {
+        if (isEmpty()) {
             return;
         }
         cout << *peek() << " ";
         pop();
-        display_iter();
+        displayIter();
         push(*peek());
     }
 };
@@ -79,14 +79,14 @@ int main(int argc, char* argv[]) {
     s.push(1);
     s.push(2);
     s.push(3);
-    s.display_iter();
+    s.displayIter();
     /* 
     Output -
     
     */
 
     s.pop();
-    s.display_recr();
+    s.displayRecr();
     /* 
     Output -
     2 1
@@ -106,7 +106,7 @@ int main(int argc, char* argv[]) {
     
     */
 
-    cout << (s.is_empty() ? "True" : "False") << "\n";
+    cout << (s.isEmpty() ? "True" : "False") << "\n";
     /* 
     Output -
     True

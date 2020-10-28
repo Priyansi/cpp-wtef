@@ -29,7 +29,7 @@ class Stack {
     }
 
     void pop() {
-        if (top == -1) {
+        if (isEmpty()) {
             cout << "Stack Underflow.\n";
             return;
         }

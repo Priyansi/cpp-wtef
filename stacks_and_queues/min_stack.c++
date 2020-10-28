@@ -1,75 +1,53 @@
-#pragma once
-
-#include <algorithm>
-#include <iostream>
-#include <utility>
+#include "../header_files/stack_ll.h"
 
 using namespace std;
 
 template <typename DataType>
-class Node {
-   public:
-    DataType data;
-    Node<DataType>* next;
-    Node() {
-        next = nullptr;
-    }
-};
-
-template <typename DataType>
-class Stack {
-    Node<DataType>* top;
+class MinStack {
+    Stack<DataType> stack;
+    Stack<DataType> min_stack;
 
    public:
-    Stack() {
-        top = nullptr;
-    }
-
     void push(DataType val) {
-        Node<DataType>* new_node = new (nothrow) Node<DataType>();  // to avoid bad alloc exception to be thrown
-        if (!new_node) {
-            cout << "Memory allocation failed\n";
-            return;
+        stack.push(val);
+        if (min_stack.isEmpty() || min_stack.peek()->data > val) {
+            min_stack.push(val);
         }
-        while (!isEmpty() && peek()->data < val) {
-        }
-        new_node->data = val;
-        new_node->next = top;
-        top = new_node;
     }
 
     void pop() {
-        if (top == nullptr) {
-            cout << "Stack Underflow.\n";
-            return;
+        DataType deleted_val = stack.peek()->data;
+        stack.pop();
+        if (!min_stack.isEmpty() && deleted_val == min_stack.peek()->data) {
+            min_stack.pop();
         }
-        Node<DataType>* del_node = top;
-        top = top->next;
-        delete del_node;
     }
 
     Node<DataType>* peek() {
-        return top;
+        return stack.peek();
+    }
+
+    DataType min() {
+        return min_stack.peek()->data;
     }
 
     bool isEmpty() {
-        return top == nullptr;
-    }
-
-    void display() {
-        Stack<DataType> temp;
-        DataType curr;
-        while (!isEmpty()) {
-            curr = peek()->data;
-            pop();
-            temp.push(curr);
-            cout << curr << " ";
-        }
-        while (!temp.isEmpty()) {
-            curr = temp.peek()->data;
-            temp.pop();
-            push(curr);
-        }
-        cout << "\n";
+        return stack.isEmpty();
     }
 };
+
+int main(int argc, char* argv[]) {
+    MinStack<int> ms;
+    ms.push(5);
+    ms.push(2);
+    ms.push(4);
+    ms.push(1);
+    ms.push(3);
+    ms.push(9);
+
+    cout << ms.min() << endl;
+    ms.pop();
+    ms.pop();
+    ms.pop();
+    cout << ms.min() << endl;
+}
