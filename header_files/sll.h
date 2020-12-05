@@ -1,13 +1,9 @@
+#pragma once
 
 #include <algorithm>
 #include <cmath>
 #include <iostream>
 #include <utility>
-/*
-Description - 
-Time Complexity - 
-Space Complexity - 
-*/
 
 using namespace std;
 
@@ -227,49 +223,3 @@ class SingleLinkedList {
         cout << "NULL\n";
     }
 };
-
-int main(int argc, char *argv[]) {
-    SingleLinkedList<int> sll;
-    sll.insertNodeAtEnd(2);
-    sll.insertNodeAtEnd(3);
-    sll.insertNodeAtEnd(5);
-    sll.insertNodeAtIndex(1, 0);  // insert at head
-    sll.insertNodeAtIndex(6, 9);  // insert at end
-    sll.insertNodeAtIndex(4, 3);  // insert at index 3
-    sll.displayNodes();
-    /* 
-    Output -
-    1->2->3->4->5->6->NULL
-    */
-
-    sll.reverseNodesIterative();
-    sll.displayNodes();
-    /* 
-    Output -
-    6->5->4->3->2->1->NULL
-    */
-    sll.reverseNodesRecursive();
-    sll.displayNodes();
-    /* 
-    Output -
-    1->2->3->4->5->6->NULL
-    */
-    sll.deleteNodeAtEnd();
-    sll.deleteNodeAtIndex(11);
-    sll.deleteNodeAtIndex(0);
-    sll.deleteNodeAtIndex(1);
-    sll.displayNodes();
-
-    /*
-    Output -
-    2->4->NULL
-    */
-
-    cout << sll.search(4);
-
-    /*
-    Output -
-    1
-    */
-    return 0;
-}

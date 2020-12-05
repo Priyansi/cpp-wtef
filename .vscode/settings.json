@@ -6,5 +6,19 @@
         "LightSkyBlue"
     ],
     "bracket-pair-colorizer-2.forceUniqueOpeningColor":true,
-    "bracket-pair-colorizer-2.forceIterationColorCycle":true,
+    "bracket-pair-colorizer-2.forceIterationColorCycle": true,
+    "files.associations": {
+        "cwchar": "cpp",
+        "vector": "cpp",
+        "exception": "cpp",
+        "initializer_list": "cpp",
+        "iosfwd": "cpp",
+        "istream": "cpp",
+        "new": "cpp",
+        "ostream": "cpp",
+        "stdexcept": "cpp",
+        "streambuf": "cpp",
+        "type_traits": "cpp",
+        "utility": "cpp"
+    },
 }
