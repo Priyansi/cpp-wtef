@@ -5,7 +5,7 @@
 using namespace std;
 
 template <typename DataType>
-bool isSubset(vector<DataType> data1, vector<DataType> data2) {
+bool isSubset(const vector<DataType> &data1, const vector<DataType> &data2) {
     unordered_set<DataType> hash_table;
     for (DataType val : data1) {
         hash_table.insert(val);

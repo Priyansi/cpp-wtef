@@ -1,20 +1,26 @@
 #include <iostream>
 #include <unordered_map>
+#include <unordered_set>
 
 using namespace std;
 
 string tracePath(const unordered_map<string, string> &hash_map) {
     string path = "";
-    for (int i = 0; i < size; ++i) {
-        string first = to_string(arr[i][0]);
-        string second = to_string(arr[i][1]);
-        if (hash_table.find(second + "," + first) != hash_table.end()) {
-            path.append("{" + first + ", " + second + "}{" + second + ", " + first + "}");
-        } else {
-            hash_table.insert(first + "," + second);
+    string city_start = "";
+    unordered_set<string> cities;
+    for (auto &it : hash_map) {
+        cities.insert(it.second);
+    }
+    for (auto &it : hash_map) {
+        if (cities.find(it.first) == cities.end()) {
+            city_start = it.first;
         }
     }
-    return path;
+    while (hash_map.find(city_start) != hash_map.end()) {
+        path.append(city_start + "->" + hash_map.at(city_start) + ", ");
+        city_start = hash_map.at(city_start);
+    }
+    return path.substr(0, path.length() - 2);
 }
 
 int main() {
