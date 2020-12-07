@@ -9,13 +9,12 @@ pair<int, int> findSum(const vector<int>& data, int sum) {
     unordered_set<int> elements;
     pair<int, int> result = {-1, -1};
     for (auto val : data) {
-        elements.insert(val);
-    }
-    for (auto val : data) {
         if (elements.find(sum - val) != elements.end()) {
             result.first = val;
             result.second = sum - val;
             break;
+        } else {
+            elements.insert(val);
         }
     }
     return result;
