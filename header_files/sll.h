@@ -178,6 +178,30 @@ class SingleLinkedList {
         }
     }
 
+    bool deleteNode(DataType val) {
+        if (head == nullptr) {
+            cout << "Empty list. No node to delete.\n";
+            return false;
+        } else {
+            Node<DataType> *curr_node = head;
+            Node<DataType> *prev_node;
+            while (curr_node->data != val && curr_node->next != nullptr) {
+                prev_node = curr_node;
+                curr_node = curr_node->next;
+            }
+            if (curr_node->data != val) {
+                return false;
+            } else if (curr_node == head) {
+                head = head->next;
+            } else {
+                prev_node->next = curr_node->next;
+            }
+            delete curr_node;
+            decrementLength();
+        }
+        return true;
+    }
+
     void reverseNodesRecursive() {
         if (head != nullptr) {
             _reverseNodesRecursive(head);
