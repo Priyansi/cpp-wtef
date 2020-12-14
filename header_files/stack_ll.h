@@ -41,7 +41,7 @@ class Stack {
             cout << "Stack Underflow.\n";
             return;
         }
-        Node<DataType>* del_node = top;
+        NodeStack<DataType>* del_node = top;
         top = top->next;
         delete del_node;
     }

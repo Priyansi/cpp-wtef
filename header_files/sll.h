@@ -93,6 +93,10 @@ class SingleLinkedList {
         length = 0;
     }
 
+    Node<DataType> *getHead() {
+        return this->head;
+    }
+
     void insertNodeAtEnd(DataType val) {
         Node<DataType> *new_node = new (nothrow) Node<DataType>();  // to avoid bad alloc exception to be thrown
         if (!new_node) {

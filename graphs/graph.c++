@@ -1,5 +1,6 @@
 #include <iostream>
 #include <unordered_map>
+#include <unordered_set>
 
 #include "../header_files/sll.h"
 
@@ -7,25 +8,21 @@ using namespace std;
 
 template <typename DataType>
 class Graph {
-    int num_vertices;
     unordered_map<DataType, SingleLinkedList<DataType>> adj_list;
 
-    void incrementVertices() {
-        ++this->num_vertices;
-    }
-
-    void decrementVertices() {
-        --this->num_vertices;
-    }
+    void breadthFirstSearchVertex(DataType, unordered_set<DataType>&);
+    void depthFirstSearchVertex(DataType, unordered_set<DataType>&);
 
    public:
     Graph() {
-        this->num_vertices = 0;
     }
+
+    void breadthFirstSearch(DataType);
+    void depthFirstSearch(DataType);
 
     bool addVertex(DataType vertex) {
         if (this->adj_list.find(vertex) == this->adj_list.end()) {
-            SingleLinkedList<DataType>* edges = new (nothrow) SingleLinkedList<DataType>();
+            SingleLinkedList<DataType>* edges = new SingleLinkedList<DataType>();
             this->adj_list[vertex] = *edges;
             return true;
         }
