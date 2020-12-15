@@ -19,6 +19,8 @@ class Graph {
 
     void breadthFirstSearch(DataType);
     void depthFirstSearch(DataType);
+    void depthFirstSearchRecursive(DataType);
+    void topologicalSort();
 
     bool addVertex(DataType vertex) {
         if (this->adj_list.find(vertex) == this->adj_list.end()) {
