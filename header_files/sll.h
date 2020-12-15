@@ -225,7 +225,7 @@ class SingleLinkedList {
         head = prev_node;
     }
 
-    bool search(int ele_to_search) {
+    bool search(DataType ele_to_search) {
         if (head != nullptr) {
             for (Node<DataType> *curr_node = head; curr_node != nullptr; curr_node = curr_node->next) {
                 if (curr_node->data == ele_to_search) {

@@ -2,6 +2,7 @@
 
 #include <iostream>
 #include <unordered_map>
+#include <unordered_set>
 
 #include "../header_files/stack_ll.h"
 #include "sll.h"
@@ -15,6 +16,7 @@ class Graph {
     void breadthFirstSearchVertex(DataType, unordered_set<DataType>&);
     void depthFirstSearchVertex(DataType, unordered_set<DataType>&);
     void topologicalSortRecursive(DataType, unordered_set<DataType>&, Stack<DataType>&);
+    void dijkstraShortestPathFromVertex(DataType, unordered_set<DataType>&, unordered_map<DataType, int>&);
 
    public:
     Graph() {
@@ -24,6 +26,7 @@ class Graph {
     void depthFirstSearch(DataType);
     void depthFirstSearchRecursive(DataType);
     void topologicalSort();
+    void dijkstraShortestPath(DataType);
 
     bool addVertex(DataType vertex) {
         if (this->adj_list.find(vertex) == this->adj_list.end()) {

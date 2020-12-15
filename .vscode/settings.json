@@ -20,7 +20,8 @@
         "streambuf": "cpp",
         "type_traits": "cpp",
         "utility": "cpp",
-        "iostream": "cpp"
+        "iostream": "cpp",
+        "unordered_set": "cpp"
     },
     "C_Cpp.errorSquiggles": "Enabled",
 }
