@@ -1,9 +1,11 @@
+#include <limits.h>
+
 #include <algorithm>
 #include <cmath>
 #include <iostream>
+#include <queue>
 #include <unordered_map>
 #include <unordered_set>
-#include <utility>
 
 using namespace std;
 
@@ -94,28 +96,29 @@ template <typename DataType>
 class Graph {
     unordered_map<DataType, SingleLinkedList<DataType>> adj_list;
 
-    void dijkstraShortestPathFromVertex(DataType start_vertex, unordered_set<DataType> &visited_vertices, unordered_map<DataType, int> &shortest_paths) {
-        if (visited_vertices.find(start_vertex) == visited_vertices.end()) {
-            visited_vertices.insert(start_vertex);
-            Node<DataType> *edge = this->adj_list[start_vertex].getHead();
-            for (edge; edge != nullptr; edge = edge->next) {
-                if ((shortest_paths.find(edge->data) == shortest_paths.end()) || (shortest_paths[start_vertex] + edge->weight < shortest_paths[edge->data])) {
-                    shortest_paths[edge->data] = shortest_paths[start_vertex] + edge->weight;
-                }
-            }
-            dijkstraShortestPathFromVertex((this->adj_list[start_vertex]).findMin(), visited_vertices, shortest_paths);
-        }
-    }
-
    public:
     Graph() {
     }
 
     void dijkstraShortestPath(DataType start_vertex) {
-        unordered_set<DataType> visited_vertices;
+        // creating a min heap with weight, vertex pairs
+        priority_queue<pair<int, DataType>, vector<pair<int, DataType>>, greater<pair<int, DataType>>> visited_vertices_paths;
         unordered_map<DataType, int> shortest_paths;
         shortest_paths[start_vertex] = 0;
-        dijkstraShortestPathFromVertex(start_vertex, visited_vertices, shortest_paths);
+        visited_vertices_paths.push(make_pair(shortest_paths[start_vertex], start_vertex));
+
+        while (!visited_vertices_paths.empty()) {
+            start_vertex = (visited_vertices_paths.top()).second;
+            visited_vertices_paths.pop();
+            Node<DataType> *edge = this->adj_list[start_vertex].getHead();
+            for (edge; edge != nullptr; edge = edge->next) {
+                if ((shortest_paths.find(edge->data) == shortest_paths.end()) || (shortest_paths[start_vertex] + edge->weight < shortest_paths[edge->data])) {
+                    shortest_paths[edge->data] = shortest_paths[start_vertex] + edge->weight;
+                    visited_vertices_paths.push(make_pair(shortest_paths[edge->data], edge->data));
+                }
+            }
+        }
+
         for (auto it : shortest_paths) {
             cout << "From " << to_string(start_vertex) << " to " << to_string(it.first) << " : " << to_string(it.second) << endl;
         }
