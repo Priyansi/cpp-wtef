@@ -27,6 +27,7 @@ class Graph {
     void depthFirstSearchRecursive(DataType);
     void topologicalSort();
     void dijkstraShortestPath(DataType);
+    bool doesPathExists(DataType, DataType);
 
     bool addVertex(DataType vertex) {
         if (this->adj_list.find(vertex) == this->adj_list.end()) {

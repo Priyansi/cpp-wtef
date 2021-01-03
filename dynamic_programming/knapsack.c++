@@ -6,7 +6,6 @@ using namespace std;
 int maxMoneyStolen(const vector<pair<int, int>> &data, int capacity) {
     int dp[data.size() + 1][capacity + 1];
     fill_n(*dp, (data.size() + 1) * (capacity + 1), 0);
-    int money = 0;
     cout << dp[0][2] << endl;
     for (int i = 1; i <= data.size(); ++i) {
         for (int j = 1; j <= capacity; ++j) {
